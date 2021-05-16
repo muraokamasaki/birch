@@ -36,11 +36,9 @@ class Searcher:
     def build_searcher(self, k1=0.9, b=0.4, fb_terms=10, fb_docs=10, original_query_weight=0.5,
         index_path='index/lucene-index.robust04.pos+docvectors+rawdocs', rm3=False):
         searcher = self.JSearcher(self.JString(index_path))
-        searcher.setBM25Similarity(k1, b)
-        if not rm3:
-            searcher.setDefaultReranker()
-        else:
-            searcher.setRM3Reranker(fb_terms, fb_docs, original_query_weight, False)
+        searcher.setBM25(k1, b)
+        if rm3:
+            searcher.setRM3(fb_terms, fb_docs, original_query_weight, False)
         return searcher
 
     def search_document(self, searcher, qid2docid, qid2text, output_fn, collection='robust04', K=1000, topics=None, filter_exact_matches=False):
@@ -56,7 +54,7 @@ class Searcher:
                     sim = hits[i].score
                     docno = hits[i].docid
                     label = 1 if qid in qid2docid and docno in qid2docid[qid] else 0
-                    content = hits[i].content
+                    content = hits[i].raw if 'www' in collection else hits[i].content
                     if collection == 'core18':
                         content_json = json.loads(content)
                         content = ''

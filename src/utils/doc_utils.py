@@ -24,6 +24,10 @@ def get_query(ftopic, collection):
     empty = False
     qid = -1
     with open(ftopic) as f:
+        if collection.startswith('www'):
+            # NTCIR topic format.
+            return ntcir_topic_reader(f)
+
         for line in f:
             if empty is True and int(qid) >= 0:
                 qid2query[qid] = line.replace('\n', '').strip()
@@ -45,6 +49,29 @@ def get_query(ftopic, collection):
                     empty = True
                 else:
                     qid2query[qid] = query.lower()
+
+    return qid2query
+
+
+def ntcir_topic_reader(f):
+    # Should be better to use xml reader instead?
+    qid2query = {}
+    qid = -1
+    for line in f:
+        # Get topic number
+        tag = 'qid'
+        ind = line.find('<{}>'.format(tag))
+        if ind >= 0:
+            end_ind = -7
+            qid = str(int(line[ind + len(tag) + 2:end_ind]))
+        # Get topic title
+        tag = 'content'
+        ind = line.find('<{}>'.format(tag))
+        if ind >= 0:
+            end_ind = -11
+            query = line[ind + len(tag) + 2:end_ind].strip()
+            
+            qid2query[qid] = query.replace('&apos;', "'").lower()
 
     return qid2query
 
@@ -101,7 +128,7 @@ def clean_html(html, collection):
     cleaned = re.sub(r"&nbsp;", " ", cleaned)
     cleaned = re.sub(r"  ", " ", cleaned)
     cleaned = re.sub(r"\t", " ", cleaned)
-    if 'core' in collection:
+    if 'core' in collection or 'www' in collection:
         cleaned = re.sub(r"\n", " ", cleaned)
         cleaned = re.sub(r"\s+", " ", cleaned)
     return cleaned.strip()

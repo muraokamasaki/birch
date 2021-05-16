@@ -20,7 +20,11 @@ if __name__ == '__main__':
     fqrel = os.path.join(data_path, 'qrels', 'qrels.' + collection + '.txt')
     ftopic = os.path.join(data_path, 'topics', 'topics.' + collection + '.txt')
 
-    qid2docid = get_relevant_docids(fqrel)
+    if os.path.exists(fqrel):
+        qid2docid = get_relevant_docids(fqrel)
+    else:
+        # No qrels, label all as 0.
+        qid2docid = {}
     qid2text = get_query(ftopic, collection=collection)
 
     docsearch = Searcher(anserini_path)
