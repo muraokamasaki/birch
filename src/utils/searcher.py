@@ -43,7 +43,7 @@ class Searcher:
 
     def search_document(self, searcher, qid2docid, qid2text, output_fn, collection='robust04', K=1000, topics=None, filter_exact_matches=False):
         with open(output_fn, 'w', encoding='utf-8') as out, open(output_fn + '_pruned', 'w', encoding='utf-8') as out_pruned:
-            if 'core' in collection:
+            if 'core' in collection or 'www' in collection:
                 # Robust04 provides CV topics
                 topics = qid2text
             for qid in topics:

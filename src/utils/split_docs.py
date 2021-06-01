@@ -58,5 +58,5 @@ if __name__ == '__main__':
             os.remove(output_fn + str(i + 1))
 
     else:
-        searcher = docsearch.build_searcher(k1=0.9, b=0.4, index_path=index_path, rm3=True)
+        searcher = docsearch.build_searcher(k1=0.9, b=0.4, index_path=index_path) # , rm3=True) # Set rm3 off by default.
         docsearch.search_document(searcher, qid2docid, qid2text, output_fn, collection, K=1000)
