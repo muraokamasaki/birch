@@ -15,7 +15,10 @@ if __name__ == '__main__':
     anserini_path = args.anserini_path
     data_path = args.data_path
     index_path = args.index_path
-    output_fn = os.path.join(args.data_path, 'datasets', collection + '_sents.csv')
+    dataset_path = os.path.join(args.data_path, 'datasets')
+    if not os.path.exists(dataset_path):
+        os.mkdir(dataset_path)
+    output_fn = os.path.join(dataset_path, collection + '_sents.csv')
 
     fqrel = os.path.join(data_path, 'qrels', 'qrels.' + collection + '.txt')
     ftopic = os.path.join(data_path, 'topics', 'topics.' + collection + '.txt')
