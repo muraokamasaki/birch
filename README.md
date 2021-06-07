@@ -4,6 +4,8 @@
  
 Document ranking via sentence modeling using BERT
 
+This repository is a fork of the original [Birch repository](https://github.com/castorini/birch). It includes code to evaluate the BERT models on the NTCIR WWW-3 test collection. A full tutorial is included [here](tutorial/www3.md).
+
 Note: 
 The results in the arXiv paper [Simple Applications of BERT for Ad Hoc Document Retrieval](https://arxiv.org/abs/1903.10972) have been superseded by the results in the EMNLP'19 paper [Cross-Domain Modeling of Sentence-Level Evidence
 for Document Retrieval].
