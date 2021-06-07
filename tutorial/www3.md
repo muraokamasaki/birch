@@ -79,22 +79,20 @@ The next steps tune the hyperparameters and evaluate the BERT model on robust04.
 ```
 
 We should get the following scores (BERT-base, MB):
-1S:
-map : 0.3204
-P@20 : 0.4163
-ndcg@10 : 0.4824
-ndcg@20 :  0.4691
-2S:
-map : 0.3204
-P@20 : 0.4179
-ndcg@10 : 0.4842
-ndcg@20 : 0.4715
-3S:
-map : 0.3203
-P@20 : 0.4179
-ndcg@10 : 0.4862
-ndcg@20 : 0.4722
-
+||||
+|-|-|-|
+|1S:|map|0.3204|
+||P@20|0.4163|
+||ndcg@10|0.4824|
+||ndcg@20|0.4691|
+|2S:|map|0.3204|
+||P@20|0.4179|
+||ndcg@10|0.4842|
+||ndcg@20|0.4715|
+|3S:|map|0.3203|
+||P@20|0.4179|
+||ndcg@10|0.4862|
+||ndcg@20|0.4722|
 
 ## Retrieve sentences from top candidate documents
 
@@ -136,30 +134,28 @@ At this point, we the runs are ready for submission (although they might need to
 ```
 
 We should get the following scores (BERT-base, MB):
-1S:
-map : 0.3808
-P@20 : 0.7719
-ndcg@10 : 0.5964
-2S:
-map : 0.3855
-P@20 : 0.7856
-ndcg@10 : 0.6135
-3S:
-map : 0.3855
-P@20 : 0.7831
-ndcg@10 : 0.6125
+||||
+|-|-|-|
+|1S:|map|0.3808|
+||P@20|0.7719|
+||ndcg@10|0.5964|
+|2S:|map|0.3855|
+||P@20|0.7856|
+||ndcg@10|0.6135|
+|3S:|map|0.3855|
+||P@20|0.7831|
+||ndcg@10|0.6125|
 
 The results are not particularly impressive. However if we repeat the experiment using the provided model (BERT-large and fine tuned on MSMARCO-\>MB), we achieve much better results.
-1S:
-map : 0.3676
-P@20 : 0.8094
-ndcg@10 : 0.6828
-2S:
-map : 0.3627
-P@20 : 0.8169
-ndcg@10 : 0.6885
-3S:
-map : 0.3648
-P@20 : 0.8094
-ndcg@10 : 0.6930
 
+||||
+|-|-|-|
+|1S:|map|0.3676|
+||P@20|0.8094|
+||ndcg@10|0.6828|
+|2S:|map|0.3627|
+||P@20|0.8169|
+||ndcg@10|0.6885|
+|3S:|map|0.3648|
+||P@20|0.8094|
+||ndcg@10|0.6930|
